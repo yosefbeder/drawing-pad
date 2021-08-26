@@ -1,7 +1,7 @@
 import React from 'react';
-import { useCallback } from 'react';
 import useCanvas from '../../hooks/useCanvas';
 import classes from './Form.module.css';
+import { applyStyles } from '../../utils/canvas';
 
 interface CanvasProps {
   size: number;
@@ -9,28 +9,19 @@ interface CanvasProps {
   color: string;
 }
 
-const Canvas: React.FC<CanvasProps> = ({ size, blur, color }) => {
-  const canvasRef = useCanvas(
-    useCallback(
-      ctx => {
-        ctx.clearRect(0, 0, 150, 150);
+const Canvas: React.FC<CanvasProps> = props => {
+  const canvasRef = useCanvas(ctx => {
+    ctx.clearRect(0, 0, 150, 150);
 
-        const fullCircle = Math.PI * 2;
+    const fullCircle = Math.PI * 2;
 
-        ctx.lineCap = 'round';
-        ctx.lineWidth = size;
-        ctx.shadowBlur = blur;
-        ctx.shadowColor = color;
-        ctx.strokeStyle = color;
+    applyStyles(ctx, props);
 
-        ctx.beginPath();
-        ctx.arc(112.5, 75, 37.5, 0, fullCircle / 2, true);
-        ctx.arc(37.5, 75, 37.5, 0, fullCircle / 2);
-        ctx.stroke();
-      },
-      [size, blur, color],
-    ),
-  );
+    ctx.beginPath();
+    ctx.arc(112.5, 75, 37.5, 0, fullCircle / 2, true);
+    ctx.arc(37.5, 75, 37.5, 0, fullCircle / 2);
+    ctx.stroke();
+  });
 
   return (
     <canvas

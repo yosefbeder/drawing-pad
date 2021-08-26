@@ -1,21 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { ConfigType } from '../../types';
 import Canvas from './Canvas';
 import classes from './Form.module.css';
 import Input from './Input';
 
 interface FormProps {
-  defalutValues: {
+  values: {
     size: number;
     blur: number;
     color: string;
   };
+  onChange: (value: ConfigType) => void;
   exclude?: ('size' | 'blur' | 'color')[];
 }
 
-const Form: React.FC<FormProps> = ({ defalutValues, exclude = [] }) => {
-  const [size, setSize] = useState(defalutValues.size);
-  const [blur, setBlur] = useState(defalutValues.blur);
-  const [color, setColor] = useState(defalutValues.color);
+const Form: React.FC<FormProps> = ({ values, onChange, exclude = [] }) => {
+  const [size, setSize] = useState(values.size);
+  const [blur, setBlur] = useState(values.blur);
+  const [color, setColor] = useState(values.color);
+
+  useEffect(() => {
+    onChange({ size, blur, color });
+  }, [size, blur, color]);
 
   return (
     <div className={classes.container}>
@@ -25,8 +33,8 @@ const Form: React.FC<FormProps> = ({ defalutValues, exclude = [] }) => {
             label="Size"
             type="number"
             value={size}
-            min={1}
             onChange={e => setSize(+e.target.value)}
+            min={1}
           />
         )}
         {!exclude.includes('blur') && (
@@ -34,8 +42,8 @@ const Form: React.FC<FormProps> = ({ defalutValues, exclude = [] }) => {
             label="Blur"
             type="number"
             value={blur}
-            min={1}
             onChange={e => setBlur(+e.target.value)}
+            min={0}
           />
         )}
 

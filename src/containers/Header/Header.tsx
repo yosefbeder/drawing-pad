@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './Header.module.css';
 import {
   IoArrowUndoOutline as Undo,
@@ -8,27 +8,34 @@ import { Eraser, Pencil } from 'react-bootstrap-icons';
 import IconButton from '../../components/IconButton';
 import withDropdown from '../../helper/withDropdown';
 import Form from '../../components/Form/Form';
-import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { ERASER, PENCIL } from '../../store/constants/configs';
+import { CHANGE_TOOL, REDO, UNDO } from '../../store/constants/app';
 
 const Header = () => {
+  const dispatch = useAppDispatch();
+  const selectedTool = useAppSelector(state => state.app.selectedTool);
+  const eraserConfigs = useAppSelector(state => state.configs.eraser);
+  const pencilConfigs = useAppSelector(state => state.configs.pencil);
   const [isEraserConfigsShown, setIsEraserConfigsShown] = useState(false);
   const [isPencilConfigsShown, setIsPencilConfigsShown] = useState(false);
-  const [selectedTool, setSelectedTool] = useState<'pencil' | 'eraser'>(
-    'pencil',
-  );
+
+  const past = useAppSelector(state => state.app.paths.past);
+  const future = useAppSelector(state => state.app.paths.future);
 
   return (
     <div className={classes.container}>
       {withDropdown(
         <IconButton
-          onClick={() => setSelectedTool('eraser')}
+          onClick={() => dispatch({ type: CHANGE_TOOL, payload: 'eraser' })}
           isSelected={selectedTool === 'eraser'}
         >
           <Eraser />
         </IconButton>,
         <Form
-          defalutValues={{ size: 2, blur: 1, color: '#fff' }}
+          values={{ ...eraserConfigs, color: '#fff' }}
           exclude={['color']}
+          onChange={values => dispatch({ type: ERASER, payload: values })}
         />,
         classes.dropdown,
         isEraserConfigsShown,
@@ -38,17 +45,14 @@ const Header = () => {
 
       {withDropdown(
         <IconButton
-          onClick={() => setSelectedTool('pencil')}
+          onClick={() => dispatch({ type: CHANGE_TOOL, payload: 'pencil' })}
           isSelected={selectedTool === 'pencil'}
         >
           <Pencil />
         </IconButton>,
         <Form
-          defalutValues={{
-            size: 2,
-            blur: 1,
-            color: '#fff',
-          }}
+          values={pencilConfigs}
+          onChange={values => dispatch({ type: PENCIL, payload: values })}
         />,
         classes.dropdown,
         isPencilConfigsShown,
@@ -57,10 +61,16 @@ const Header = () => {
       )}
 
       <h1 className={`header-1 ${classes.header}`}>Drawing Pad</h1>
-      <IconButton>
+      <IconButton
+        onClick={() => dispatch({ type: UNDO })}
+        disabled={past.length === 0}
+      >
         <Undo />
       </IconButton>
-      <IconButton>
+      <IconButton
+        onClick={() => dispatch({ type: REDO })}
+        disabled={future.length === 0}
+      >
         <Redo />
       </IconButton>
     </div>
