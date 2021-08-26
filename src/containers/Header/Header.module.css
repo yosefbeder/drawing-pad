@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: var(--space-med);
+
+  background-color: var(--color-grey-dark);
+  height: 3rem;
+  border-bottom: 1px solid var(--color-grey);
+  padding: 0 var(--space-lg);
+}
+
+.header {
+  margin: 0 auto;
+  cursor: context-menu;
+}
+
+.dropdown {
+  left: 50%;
+  transform: translateX(-50%);
+}

@@ -1,0 +1,79 @@
+.container {
+  position: relative;
+  width: max-content;
+}
+
+.form {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-med);
+
+  margin: 1rem;
+  width: 10rem;
+  padding: var(--space-med);
+  border-radius: var(--rounded-sm);
+  background-color: var(--color-grey-dark);
+  border: 1px solid var(--color-grey);
+}
+
+.form::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, 50%) rotateZ(45deg);
+
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--color-grey-dark);
+  border-top: 1px solid var(--color-grey);
+  border-left: 1px solid var(--color-grey);
+}
+
+.canvas {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background-color: var(--color-grey-dark);
+  border-radius: var(--rounded-sm);
+  border: 1px solid var(--color-grey);
+  padding: var(--space-sm);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.input-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-white);
+}
+
+.input {
+  padding: var(--space-sm) var(--space-med);
+  border-radius: var(--rounded-sm);
+  outline: none;
+  background-color: transparent;
+  border: 1px solid var(--color-grey-light);
+
+  color: var(--color-grey-light);
+  font-size: 1rem;
+
+  transition: background-color 300ms, box-shadow 200ms, border-color 200ms;
+}
+
+.input:hover {
+  border: 1px solid var(--color-grey-lighter);
+}
+
+.input:focus {
+  border: 1px solid var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
