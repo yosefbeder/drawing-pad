@@ -1,6 +1,6 @@
 {
   "name": "drawing-pad",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://yosefbeder.github.io/drawing-pad",
   "private": true,
   "dependencies": {

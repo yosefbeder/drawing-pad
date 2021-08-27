@@ -15,9 +15,9 @@ type ActionType = {
 const intialState: AppType = {
   selectedTool: 'pencil',
   paths: {
-    past: [],
-    present: null,
-    future: [],
+    past: JSON.parse(localStorage.getItem('past')!) || [],
+    present: JSON.parse(localStorage.getItem('present')!) || null,
+    future: JSON.parse(localStorage.getItem('future')!) || [],
   },
 };
 

@@ -76,6 +76,16 @@ const Canvas = () => {
     }
   }, [present, past]);
 
+  useEffect(() => {
+    if (ctx) {
+      if (present) {
+        [...past, present].forEach(path => drawPath(ctx, path!));
+      } else {
+        past.forEach(path => drawPath(ctx, path));
+      }
+    }
+  }, [ctx]);
+
   return (
     <canvas
       className={`canvas canvas--${selectedTool}`}

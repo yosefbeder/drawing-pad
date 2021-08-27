@@ -5,8 +5,16 @@ import { PENCIL, ERASER } from '../constants/configs';
 const canvasColor = 'hsl(200, 20%, 20%)';
 
 const intialState: ConfigsType = {
-  pencil: { size: 2, blur: 1, color: '#fff' },
-  eraser: { size: 15, blur: 5, color: canvasColor },
+  pencil: JSON.parse(localStorage.getItem('pencilConfigs')!) || {
+    size: 2,
+    blur: 1,
+    color: '#fff',
+  },
+  eraser: JSON.parse(localStorage.getItem('eraserConfigs')!) || {
+    size: 15,
+    blur: 5,
+    color: canvasColor,
+  },
 };
 
 const configsReducer = (
