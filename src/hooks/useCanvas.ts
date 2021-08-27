@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-const useCanvas = (draw: (ctx: CanvasRenderingContext2D) => void) => {
+const useCanvas = (draw?: (ctx: CanvasRenderingContext2D) => void) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [ctx, setCtx] = useState<CanvasRenderingContext2D | null>(null);
 
   useEffect(() => {
     const ctx = canvasRef.current?.getContext('2d');
@@ -11,10 +12,14 @@ const useCanvas = (draw: (ctx: CanvasRenderingContext2D) => void) => {
       return;
     }
 
-    draw(ctx);
+    setCtx(ctx);
+
+    if (draw) {
+      draw(ctx);
+    }
   }, [draw]);
 
-  return canvasRef;
+  return { ref: canvasRef, ctx };
 };
 
 export default useCanvas;

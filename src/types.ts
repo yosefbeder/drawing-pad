@@ -13,5 +13,5 @@ export type Tool = 'pencil' | 'eraser';
 
 export interface Path {
   configs: ConfigType;
-  path: [number, number][];
+  points: [number, number][];
 }

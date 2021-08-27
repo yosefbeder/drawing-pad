@@ -17,10 +17,11 @@ const Header = () => {
   const selectedTool = useAppSelector(state => state.app.selectedTool);
   const eraserConfigs = useAppSelector(state => state.configs.eraser);
   const pencilConfigs = useAppSelector(state => state.configs.pencil);
+
   const [isEraserConfigsShown, setIsEraserConfigsShown] = useState(false);
   const [isPencilConfigsShown, setIsPencilConfigsShown] = useState(false);
 
-  const past = useAppSelector(state => state.app.paths.past);
+  const preset = useAppSelector(state => state.app.paths.present);
   const future = useAppSelector(state => state.app.paths.future);
 
   return (
@@ -61,10 +62,7 @@ const Header = () => {
       )}
 
       <h1 className={`header-1 ${classes.header}`}>Drawing Pad</h1>
-      <IconButton
-        onClick={() => dispatch({ type: UNDO })}
-        disabled={past.length === 0}
-      >
+      <IconButton onClick={() => dispatch({ type: UNDO })} disabled={!preset}>
         <Undo />
       </IconButton>
       <IconButton

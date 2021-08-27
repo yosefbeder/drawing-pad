@@ -22,7 +22,13 @@ const Form: React.FC<FormProps> = ({ values, onChange, exclude = [] }) => {
   const [color, setColor] = useState(values.color);
 
   useEffect(() => {
-    onChange({ size, blur, color });
+    if (
+      size !== values.size ||
+      blur !== values.blur ||
+      color !== values.color
+    ) {
+      onChange({ size, blur, color });
+    }
   }, [size, blur, color]);
 
   return (

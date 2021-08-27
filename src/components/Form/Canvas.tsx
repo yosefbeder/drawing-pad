@@ -10,7 +10,7 @@ interface CanvasProps {
 }
 
 const Canvas: React.FC<CanvasProps> = props => {
-  const canvasRef = useCanvas(ctx => {
+  const { ref } = useCanvas(ctx => {
     ctx.clearRect(0, 0, 150, 150);
 
     const fullCircle = Math.PI * 2;
@@ -26,7 +26,7 @@ const Canvas: React.FC<CanvasProps> = props => {
   return (
     <canvas
       className={classes.canvas}
-      ref={canvasRef}
+      ref={ref}
       width={150}
       height={150}
     ></canvas>
