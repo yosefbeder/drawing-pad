@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/drawing-pad/static/css/main.42bff79b.chunk.css",
-    "main.js": "/drawing-pad/static/js/main.281ad91d.chunk.js",
-    "main.js.map": "/drawing-pad/static/js/main.281ad91d.chunk.js.map",
+    "main.js": "/drawing-pad/static/js/main.04cdcdf7.chunk.js",
+    "main.js.map": "/drawing-pad/static/js/main.04cdcdf7.chunk.js.map",
     "runtime-main.js": "/drawing-pad/static/js/runtime-main.81d093cb.js",
     "runtime-main.js.map": "/drawing-pad/static/js/runtime-main.81d093cb.js.map",
-    "static/js/2.0dca6fda.chunk.js": "/drawing-pad/static/js/2.0dca6fda.chunk.js",
-    "static/js/2.0dca6fda.chunk.js.map": "/drawing-pad/static/js/2.0dca6fda.chunk.js.map",
+    "static/js/2.a39c4a52.chunk.js": "/drawing-pad/static/js/2.a39c4a52.chunk.js",
+    "static/js/2.a39c4a52.chunk.js.map": "/drawing-pad/static/js/2.a39c4a52.chunk.js.map",
     "index.html": "/drawing-pad/index.html",
     "static/css/main.42bff79b.chunk.css.map": "/drawing-pad/static/css/main.42bff79b.chunk.css.map",
-    "static/js/2.0dca6fda.chunk.js.LICENSE.txt": "/drawing-pad/static/js/2.0dca6fda.chunk.js.LICENSE.txt",
+    "static/js/2.a39c4a52.chunk.js.LICENSE.txt": "/drawing-pad/static/js/2.a39c4a52.chunk.js.LICENSE.txt",
     "static/media/index.css": "/drawing-pad/static/media/Pencil.e20eeecd.cur"
   },
   "entrypoints": [
     "static/js/runtime-main.81d093cb.js",
-    "static/js/2.0dca6fda.chunk.js",
+    "static/js/2.a39c4a52.chunk.js",
     "static/css/main.42bff79b.chunk.css",
-    "static/js/main.281ad91d.chunk.js"
+    "static/js/main.04cdcdf7.chunk.js"
   ]
 }
